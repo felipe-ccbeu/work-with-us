@@ -4,7 +4,8 @@ Formulário "Trabalhe Conosco" + painel interno de triagem de candidatos.
 
 **Restrição:** hospedagem e banco **gratuitos**. Solução que exige plano pago está fora.
 
-**Stack:** a definir — ver [docs/pesquisa-stack.md](docs/pesquisa-stack.md).
+**Stack:** Next.js 16 · React 19 · TypeScript · Tailwind 4 · React Hook Form + Zod · Supabase.
+Hospedagem ainda não definida — ver [docs/pesquisa.html](docs/pesquisa.html).
 
 ---
 
@@ -30,6 +31,7 @@ currículo. Nada de candidatura em rota pública. Segredos só em `.env.local`.
 | ID | Data | Área | O que faz | Status |
 |---|---|---|---|---|
 | F000 | 2026-08-23 | infra | Repositório, contexto e convenções | ativa |
+| F001 | 2026-08-23 | formulario | Candidatura online: dados, redes, portfólio, currículo e consentimento | ativa |
 
 Áreas: `infra` `formulario` `vagas` `rh` `auth` `dados` `notificacao`
 

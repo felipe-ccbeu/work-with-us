@@ -1,0 +1,91 @@
+@import "tailwindcss";
+
+/* ------------------------------------------------------------------
+   Paleta extraída do site do CCBEU Guarapuava (ccbeuguarapuava.com.br).
+   Magenta é a cor de ação; o azul dá o contraponto institucional.
+   ------------------------------------------------------------------ */
+@theme {
+  --color-magenta-50: #fff1f7;
+  --color-magenta-100: #ffe0ee;
+  --color-magenta-200: #ffc2dd;
+  --color-magenta-400: #fd3682;
+  --color-magenta-500: #ea258b;
+  --color-magenta-600: #d13a7a;
+  --color-magenta-700: #a81d63;
+
+  --color-azul-50: #eff4ff;
+  --color-azul-100: #dbe6fe;
+  --color-azul-200: #a9beeb;
+  --color-azul-400: #23addb;
+  --color-azul-500: #0448df;
+  --color-azul-600: #073db3;
+  --color-azul-700: #08379e;
+
+  --color-tinta-50: #f7f8fa;
+  --color-tinta-100: #eef0f4;
+  --color-tinta-200: #dfe3ea;
+  --color-tinta-300: #c3cad6;
+  --color-tinta-400: #8f99a9;
+  --color-tinta-500: #66707f;
+  --color-tinta-700: #3a424f;
+  --color-tinta-900: #1a1f28;
+
+  --font-titulo: var(--fonte-pt-sans), "PT Sans", system-ui, sans-serif;
+  --font-corpo: var(--fonte-lato), Lato, system-ui, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-tinta-50);
+  color: var(--color-tinta-900);
+  font-family: var(--font-corpo);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-titulo);
+  text-wrap: balance;
+}
+
+/* Foco visível e consistente — requisito de acessibilidade, não enfeite. */
+:where(a, button, input, select, textarea, [tabindex]):focus-visible {
+  outline: 3px solid var(--color-azul-500);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* O anel de foco do teclado não deve aparecer no clique de mouse. */
+:where(input, select, textarea):focus {
+  outline: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Some do fluxo visual, continua sendo lido por leitor de tela. */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
