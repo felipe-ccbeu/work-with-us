@@ -1,0 +1,46 @@
+# dependências
+node_modules/
+.pnp
+.pnp.js
+
+# build
+.next/
+out/
+build/
+dist/
+*.tsbuildinfo
+
+# ambiente — NUNCA commitar segredos
+.env
+.env.local
+.env.*.local
+!.env.example
+
+# testes / cobertura
+coverage/
+.nyc_output/
+
+# logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# editor / SO
+.vscode/*
+!.vscode/extensions.json
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# deploy / ferramentas
+.vercel
+.turbo
+.supabase/
+
+# dados sensíveis de candidatos — nunca versionar
+/uploads/
+/curriculos/
+*.csv
