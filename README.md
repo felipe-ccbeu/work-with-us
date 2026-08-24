@@ -2,6 +2,7 @@
 
 Formulário "Trabalhe Conosco" do **CCBEU Guarapuava**.
 
+- **Onde paramos e o que falta:** [docs/roadmap.md](docs/roadmap.md)
 - **Contexto, regras e registro de features:** [CLAUDE.md](CLAUDE.md)
 - **Pesquisa que embasou as decisões:** [docs/pesquisa.html](docs/pesquisa.html)
 

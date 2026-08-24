@@ -39,6 +39,7 @@ currículo. Nada de candidatura em rota pública. Segredos só em `.env.local`.
 
 ## Docs
 
+- **[roadmap.md](docs/roadmap.md) — onde paramos e o que falta. Comece por aqui.**
 - **[pesquisa.html](docs/pesquisa.html) — a pesquisa completa, didática, para abrir no navegador**
 - [pesquisa-stack.md](docs/pesquisa-stack.md) — hospedagem e banco gratuitos
 - [formulario.md](docs/formulario.md) — campos do formulário e o porquê
