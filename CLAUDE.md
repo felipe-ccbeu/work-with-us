@@ -37,6 +37,7 @@ currículo. Nada de candidatura em rota pública. Segredos só em `.env.local`.
 
 ## Docs
 
+- **[pesquisa.html](docs/pesquisa.html) — a pesquisa completa, didática, para abrir no navegador**
 - [pesquisa-stack.md](docs/pesquisa-stack.md) — hospedagem e banco gratuitos
 - [formulario.md](docs/formulario.md) — campos do formulário e o porquê
 - [lgpd.md](docs/lgpd.md) — consentimento, retenção, descarte

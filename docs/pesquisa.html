@@ -1,0 +1,483 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dossiê Trabalhe Conosco</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400..700&display=swap">
+<style>
+:root{
+  --bg:#f2f5f4; --surface:#ffffff; --surface-2:#eaefed;
+  --ink:#131f1d; --ink-soft:#4a5d5a; --ink-faint:#71837f;
+  --line:#d7e0dd; --line-strong:#b9c7c3;
+  --accent:#0f6d63; --accent-ink:#0b524a; --accent-soft:#dbeeea;
+  --warn:#a8501f; --warn-ink:#8a3f16; --warn-soft:#f8e8dd;
+  --display:"Archivo","Segoe UI",system-ui,sans-serif;
+  --body:"Source Serif 4",Georgia,"Times New Roman",serif;
+  --mono:"IBM Plex Mono",ui-monospace,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#0d1514; --surface:#151f1d; --surface-2:#1c2826;
+    --ink:#e4ebe8; --ink-soft:#a4b5b1; --ink-faint:#7d8f8b;
+    --line:#283634; --line-strong:#3a4b48;
+    --accent:#54c3b1; --accent-ink:#7ad6c6; --accent-soft:#16302c;
+    --warn:#e08d5f; --warn-ink:#efab83; --warn-soft:#32211a;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0d1514; --surface:#151f1d; --surface-2:#1c2826;
+  --ink:#e4ebe8; --ink-soft:#a4b5b1; --ink-faint:#7d8f8b;
+  --line:#283634; --line-strong:#3a4b48;
+  --accent:#54c3b1; --accent-ink:#7ad6c6; --accent-soft:#16302c;
+  --warn:#e08d5f; --warn-ink:#efab83; --warn-soft:#32211a;
+}
+*{box-sizing:border-box}
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  font-family:var(--body); font-size:17px; line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:var(--accent-ink); text-decoration:underline; text-underline-offset:3px; text-decoration-thickness:1px; text-decoration-color:var(--line-strong)}
+a:hover{text-decoration-color:currentColor}
+a:focus-visible,summary:focus-visible{outline:2px solid var(--accent); outline-offset:3px; border-radius:2px}
+h1,h2,h3,h4{font-family:var(--display); text-wrap:balance; line-height:1.15; margin:0}
+
+.masthead{border-bottom:1px solid var(--line); background:var(--surface)}
+.masthead-in{max-width:1180px; margin:0 auto; padding:60px 32px 46px}
+.eyebrow{font-family:var(--mono); font-size:11.5px; font-weight:500; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-faint); margin:0 0 22px}
+h1{font-size:clamp(34px,5.6vw,58px); font-weight:800; letter-spacing:-.022em; max-width:17ch}
+.dek{margin:22px 0 0; max-width:62ch; font-size:19px; color:var(--ink-soft)}
+.meta{display:flex; flex-wrap:wrap; gap:12px 30px; margin-top:32px; font-family:var(--mono); font-size:12px; color:var(--ink-faint)}
+.meta span{display:flex; gap:8px}
+.meta b{color:var(--ink-soft); font-weight:500}
+
+.wrap{max-width:1180px; margin:0 auto; padding:0 32px 90px; display:grid; grid-template-columns:200px minmax(0,1fr); gap:0 68px; align-items:start}
+.toc{position:sticky; top:0; padding:54px 0; font-family:var(--mono); font-size:12.5px}
+.toc-h{font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-faint); margin:0 0 16px; font-family:var(--mono)}
+.toc ol{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:11px}
+.toc a{display:flex; gap:10px; color:var(--ink-soft); text-decoration:none; line-height:1.4}
+.toc a:hover{color:var(--accent-ink)}
+.toc .n{color:var(--ink-faint); font-weight:500}
+main{padding:54px 0; min-width:0; display:flex; flex-direction:column; gap:66px}
+
+.part{display:flex; flex-direction:column; gap:26px; scroll-margin-top:24px}
+.part-head{display:flex; flex-direction:column; gap:13px; padding-bottom:22px; border-bottom:2px solid var(--ink)}
+.part-n{font-family:var(--mono); font-size:12px; font-weight:600; letter-spacing:.12em; color:var(--accent-ink)}
+.part-head h2{font-size:clamp(26px,3.6vw,36px); font-weight:700; letter-spacing:-.018em}
+.part-head .sub{font-size:17px; color:var(--ink-soft); max-width:60ch; margin:0}
+.part p{margin:0; max-width:68ch}
+.part h3{font-size:21px; font-weight:600; letter-spacing:-.01em; margin-top:14px}
+.blk{display:flex; flex-direction:column; gap:18px}
+
+.flag,.pick{border-left-width:4px; border-style:solid; border-radius:3px; padding:22px 24px; display:flex; flex-direction:column; gap:14px; max-width:74ch; border-width:1px 1px 1px 4px}
+.flag{border-color:var(--warn); background:var(--warn-soft)}
+.pick{border-color:var(--accent); background:var(--accent-soft)}
+.flag .tag,.pick .tag{font-family:var(--mono); font-size:11px; font-weight:600; letter-spacing:.13em; text-transform:uppercase}
+.flag .tag{color:var(--warn-ink)} .pick .tag{color:var(--accent-ink)}
+.flag h3,.pick h3{margin:0; font-size:19px; color:var(--ink)}
+.flag p,.pick p{margin:0}
+blockquote{margin:0; padding:14px 0 14px 22px; border-left:3px solid var(--line-strong); font-style:italic; color:var(--ink-soft)}
+blockquote cite{display:block; margin-top:10px; font-style:normal; font-family:var(--mono); font-size:11.5px; letter-spacing:.05em; color:var(--ink-faint)}
+
+details.tr{border:1px dashed var(--line-strong); border-radius:3px; background:var(--surface); max-width:74ch}
+details.tr summary{cursor:pointer; list-style:none; padding:13px 18px; font-family:var(--mono); font-size:12px; font-weight:500; letter-spacing:.04em; color:var(--accent-ink); display:flex; align-items:center; gap:11px}
+details.tr summary::-webkit-details-marker{display:none}
+details.tr summary::before{content:"+"; font-weight:600; width:12px; display:inline-block}
+details.tr[open] summary::before{content:"\2013"}
+details.tr .tr-body{padding:0 18px 18px 41px; color:var(--ink-soft); font-size:16px; display:flex; flex-direction:column; gap:12px}
+details.tr .tr-body p{margin:0; max-width:64ch}
+
+.stats{display:grid; grid-template-columns:repeat(auto-fit,minmax(170px,1fr)); gap:1px; background:var(--line); border:1px solid var(--line); border-radius:3px; overflow:hidden}
+.stat{background:var(--surface); padding:22px 20px; display:flex; flex-direction:column; gap:8px}
+.stat .v{font-family:var(--display); font-size:33px; font-weight:700; letter-spacing:-.02em; font-variant-numeric:tabular-nums; line-height:1; color:var(--ink)}
+.stat .v.warn{color:var(--warn-ink)}
+.stat .v.good{color:var(--accent-ink)}
+.stat .k{font-size:14.5px; color:var(--ink-soft); line-height:1.42}
+
+.tw{overflow-x:auto; border:1px solid var(--line); border-radius:3px; background:var(--surface)}
+table{border-collapse:collapse; width:100%; min-width:540px; font-size:15.5px}
+caption{text-align:left; padding:16px 18px 2px; font-family:var(--mono); font-size:11.5px; letter-spacing:.11em; text-transform:uppercase; color:var(--ink-faint)}
+th,td{text-align:left; padding:12px 18px; border-bottom:1px solid var(--line); vertical-align:top}
+thead th{font-family:var(--mono); font-size:11.5px; font-weight:600; letter-spacing:.07em; text-transform:uppercase; color:var(--ink-faint); background:var(--surface-2); white-space:nowrap}
+tbody tr:last-child td,tbody tr:last-child th{border-bottom:0}
+tbody th{font-weight:600; font-family:var(--display); font-size:15px}
+.pill{display:inline-block; font-family:var(--mono); font-size:10.5px; font-weight:600; letter-spacing:.06em; text-transform:uppercase; padding:3px 9px; border-radius:99px; white-space:nowrap}
+.pill.yes{background:var(--accent-soft); color:var(--accent-ink); border:1px solid var(--accent)}
+.pill.no{background:var(--warn-soft); color:var(--warn-ink); border:1px solid var(--warn)}
+.pill.mid{background:var(--surface-2); color:var(--ink-soft); border:1px solid var(--line-strong)}
+
+ul.plain,ol.steps{margin:0; padding:0; list-style:none; display:flex; flex-direction:column; gap:13px; max-width:70ch}
+ul.plain li{padding-left:22px; position:relative}
+ul.plain li::before{content:""; position:absolute; left:2px; top:12px; width:8px; height:1.5px; background:var(--accent)}
+ul.no li::before{background:var(--warn); height:7px; width:7px; top:9px; transform:rotate(45deg)}
+ol.steps{counter-reset:s}
+ol.steps li{counter-increment:s; padding-left:40px; position:relative}
+ol.steps li::before{content:counter(s); position:absolute; left:0; top:1px; font-family:var(--mono); font-size:12px; font-weight:600; color:var(--accent-ink); border:1px solid var(--line-strong); border-radius:99px; width:24px; height:24px; display:flex; align-items:center; justify-content:center}
+code{font-family:var(--mono); font-size:.86em; background:var(--surface-2); padding:1.5px 5px; border-radius:3px; color:var(--ink)}
+
+.srcs{border-top:2px solid var(--ink); padding-top:28px; display:flex; flex-direction:column; gap:20px}
+.srcgrid{display:grid; grid-template-columns:repeat(auto-fit,minmax(255px,1fr)); gap:11px 32px; font-size:15px}
+footer{border-top:1px solid var(--line); background:var(--surface); font-family:var(--mono); font-size:12px; color:var(--ink-faint)}
+.footer-in{max-width:1180px; margin:0 auto; padding:26px 32px; display:flex; flex-wrap:wrap; gap:8px 26px}
+
+@media (max-width:980px){
+  .wrap{grid-template-columns:1fr; gap:0; padding:0 24px 64px}
+  .toc{position:static; padding:34px 0 26px; border-bottom:1px solid var(--line)}
+  .toc ol{flex-direction:row; flex-wrap:wrap; gap:9px 24px}
+  main{padding:36px 0; gap:54px}
+  .masthead-in{padding:44px 24px 34px}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none !important; transition:none !important}}
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="masthead-in">
+    <p class="eyebrow">Pesquisa de base &middot; 23 de agosto de 2026</p>
+    <h1>Dossiê Trabalhe&nbsp;Conosco</h1>
+    <p class="dek">O que a comunidade usa para montar um sistema de candidaturas de custo zero, como se escreve um formulário que as pessoas terminam, e o que o RH deve (e não deve) perguntar.</p>
+    <div class="meta">
+      <span><b>Projeto</b> work-with-us</span>
+      <span><b>Restrição</b> hospedagem e banco gratuitos</span>
+      <span><b>Status</b> aguardando decisão de hospedagem</span>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+  <nav class="toc" aria-label="Índice">
+    <p class="toc-h">Índice</p>
+    <ol>
+      <li><a href="#sistema"><span class="n">01</span> Sistema</a></li>
+      <li><a href="#formularios"><span class="n">02</span> Formulários</a></li>
+      <li><a href="#rh"><span class="n">03</span> RH profissional</a></li>
+      <li><a href="#decisao"><span class="n">04</span> A decisão</a></li>
+      <li><a href="#fontes"><span class="n">05</span> Fontes</a></li>
+    </ol>
+  </nav>
+
+  <main>
+
+    <!-- ============ 1. SISTEMA ============ -->
+    <section class="part" id="sistema">
+      <div class="part-head">
+        <p class="part-n">PARTE 01</p>
+        <h2>Sistema: onde hospedar e onde guardar</h2>
+        <p class="sub">A pesquisa começou procurando o melhor par gratuito de hospedagem e banco. Encontrou primeiro um problema jurídico que elimina a opção mais óbvia.</p>
+      </div>
+
+      <div class="flag">
+        <p class="tag">Achado crítico</p>
+        <h3>O plano gratuito da Vercel proíbe uso comercial &mdash; e a definição pega o nosso caso</h3>
+        <p>A Vercel é o destino natural de qualquer projeto Next.js, e o plano Hobby é gratuito. Só que a documentação oficial diz, com todas as letras:</p>
+        <blockquote>Hobby teams are restricted to non-commercial personal use only. All commercial usage of the platform requires either a Pro or Enterprise plan.<cite>Vercel &mdash; Fair Use Guidelines, atualizado em 29/07/2026</cite></blockquote>
+        <p>O detalhe que fecha a porta é como eles definem &ldquo;uso comercial&rdquo;: qualquer deploy usado para ganho financeiro de <strong>qualquer pessoa envolvida em qualquer parte da produção</strong> do projeto &mdash; e a lista de exemplos cita explicitamente <em>&ldquo;a paid employee or consultant writing the code&rdquo;</em>.</p>
+        <p>Uma página de carreiras de uma empresa, escrita por um funcionário pago, cai exatamente nessa descrição. O caminho legítimo dentro da Vercel é o plano Pro, a <strong>US$ 20/mês</strong>.</p>
+      </div>
+
+      <details class="tr">
+        <summary>Traduzindo: isso é regra de verdade ou letra morta?</summary>
+        <div class="tr-body">
+          <p>É regra de contrato, aplicada de forma desigual. Muita gente roda site comercial no Hobby e nunca é incomodada. Mas a Vercel pode pausar a conta sem aviso, e quem sofre o prejuízo é a empresa, não a plataforma.</p>
+          <p>Para um projeto interno de fim de semana, o risco é aceitável. Para a página onde os candidatos da empresa se inscrevem &mdash; a porta de entrada pública do RH &mdash; ficar fora do ar por violação de termos é um custo que não vale os US$ 20 economizados. Por isso a pesquisa procurou alternativa em vez de ignorar a cláusula.</p>
+        </div>
+      </details>
+
+      <h3>As alternativas permitem uso comercial no plano gratuito</h3>
+      <p>Cloudflare e Netlify não têm essa restrição. As duas declaram uso comercial permitido no tier gratuito.</p>
+
+      <div class="tw">
+        <table>
+          <caption>Hospedagem &mdash; planos gratuitos</caption>
+          <thead>
+            <tr><th scope="col">&nbsp;</th><th scope="col">Cloudflare Workers</th><th scope="col">Netlify</th><th scope="col">Vercel Hobby</th></tr>
+          </thead>
+          <tbody>
+            <tr><th scope="row">Uso comercial</th><td><span class="pill yes">permitido</span></td><td><span class="pill yes">permitido</span></td><td><span class="pill no">proibido</span></td></tr>
+            <tr><th scope="row">Banda</th><td>ilimitada</td><td>100 GB/mês</td><td>100 GB/mês</td></tr>
+            <tr><th scope="row">Tempo de build</th><td>generoso</td><td>300 min/mês &mdash; dá cerca de 40 a 60 deploys</td><td>&mdash;</td></tr>
+            <tr><th scope="row">Suporte a Next.js</th><td>via OpenNext, adapter oficial da Cloudflare</td><td>adapter próprio, build 30&ndash;60% mais lento</td><td>nativo, o melhor de todos</td></tr>
+            <tr><th scope="row">Limite de bundle</th><td>3 MiB no gratuito</td><td>&mdash;</td><td>&mdash;</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <details class="tr">
+        <summary>Traduzindo: o que é OpenNext?</summary>
+        <div class="tr-body">
+          <p>O Next.js foi feito pela Vercel e roda melhor lá. O OpenNext é um projeto que traduz uma aplicação Next.js para rodar em outras infraestruturas &mdash; Cloudflare, AWS, Netlify.</p>
+          <p>O adapter da Cloudflare é oficial e mantido por eles, e roda o Next.js no modo Node.js, não no modo Edge. Isso importa porque o modo Edge derruba boa parte das bibliotecas de Node. Ainda existem limitações em recursos de cache mais avançados, mas nada que um formulário de candidaturas use.</p>
+        </div>
+      </details>
+
+      <h3>Banco de dados</h3>
+      <p>Três nomes dominam a conversa de banco gratuito hoje. A comparação abaixo já considera o que <em>este</em> projeto precisa: guardar candidaturas, guardar arquivos de currículo, e autenticar o painel do RH.</p>
+
+      <div class="tw">
+        <table>
+          <caption>Banco de dados &mdash; planos gratuitos</caption>
+          <thead>
+            <tr><th scope="col">&nbsp;</th><th scope="col">Supabase</th><th scope="col">Neon</th><th scope="col">Turso</th></tr>
+          </thead>
+          <tbody>
+            <tr><th scope="row">O que dá de graça</th><td>500 MB de banco, 1 GB de arquivos, 50 mil usuários ativos/mês</td><td>Postgres serverless com branching</td><td>9 GB, até 500 bancos</td></tr>
+            <tr><th scope="row">Guarda arquivos<br>(os currículos)</th><td><span class="pill yes">sim</span></td><td><span class="pill no">não</span></td><td><span class="pill no">não</span></td></tr>
+            <tr><th scope="row">Login pronto<br>(painel do RH)</th><td><span class="pill yes">sim</span></td><td><span class="pill no">não</span></td><td><span class="pill no">não</span></td></tr>
+            <tr><th scope="row">Pegadinha</th><td>pausa o projeto após 7 dias sem acesso</td><td>suspende, mas não apaga</td><td>é SQLite, não Postgres</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="pick">
+        <p class="tag">Escolha recomendada</p>
+        <h3>Supabase, por um motivo específico</h3>
+        <p>O Neon é o melhor banco puro da lista. Mas o Supabase é o único que resolve <strong>os três problemas do projeto de uma vez só</strong>: Postgres para as candidaturas, Storage para os PDFs de currículo, e autenticação para o painel do RH.</p>
+        <p>Escolher o Neon significaria contratar mais dois serviços separados e costurar tudo. Para um projeto que precisa sair do papel, isso é atrito sem retorno.</p>
+      </div>
+
+      <div class="flag">
+        <p class="tag">Ponto de atenção</p>
+        <h3>O Supabase gratuito pausa o projeto depois de 7 dias parado</h3>
+        <p>Página de carreiras tem exatamente esse perfil: fica semanas sem ninguém acessar, e aí abre uma vaga e o tráfego chega de uma vez. Se o projeto estiver pausado, a primeira pessoa a se candidatar encontra o site fora do ar.</p>
+        <p>Duas saídas, ambas baratas: agendar um acesso automático a cada poucos dias para manter o projeto acordado, ou aceitar que a primeira visita da semana demore alguns segundos a mais.</p>
+      </div>
+
+      <h3>Dois complementos gratuitos que a comunidade sempre acopla</h3>
+      <ul class="plain">
+        <li><strong>Cloudflare Turnstile</strong> &mdash; bloqueio de robôs sem aquele quebra-cabeça de identificar semáforos. É gratuito e praticamente obrigatório: formulário público sem proteção vira alvo de spam em questão de dias.</li>
+        <li><strong>Resend</strong> &mdash; envio do e-mail de confirmação para o candidato. O plano gratuito cobre com folga o volume de uma página de carreiras, e a configuração de domínio é simples, o que evita que a confirmação caia no spam.</li>
+      </ul>
+    </section>
+
+    <!-- ============ 2. FORMULÁRIOS ============ -->
+    <section class="part" id="formularios">
+      <div class="part-head">
+        <p class="part-n">PARTE 02</p>
+        <h2>Formulários: o que a comunidade usa</h2>
+        <p class="sub">Aqui há consenso raro. A combinação padrão está estabelecida há anos e não há motivo neste projeto para fugir dela.</p>
+      </div>
+
+      <div class="stats">
+        <div class="stat"><span class="v">12 mi</span><span class="k">downloads por semana do React Hook Form &mdash; é o padrão de fato</span></div>
+        <div class="stat"><span class="v warn">1 MB</span><span class="k">limite padrão de envio do Next.js &mdash; um PDF de currículo estoura</span></div>
+        <div class="stat"><span class="v warn">51%</span><span class="k">das home pages da web têm campo de formulário sem rótulo</span></div>
+      </div>
+
+      <h3>React Hook Form + Zod</h3>
+      <p>O React Hook Form trabalha com campos <em>não controlados</em>: em vez de o React reprocessar o formulário inteiro a cada tecla digitada, cada campo cuida de si. Num formulário longo como o de candidatura, isso é a diferença entre digitação fluida e digitação travada.</p>
+      <p>O Zod entra como o verificador das regras. A vantagem que o consagrou é que uma única declaração serve para duas coisas ao mesmo tempo: a validação e o tipo TypeScript. E a mesma regra roda no navegador e no servidor, sem escrever duas vezes.</p>
+
+      <details class="tr">
+        <summary>Traduzindo: por que validar duas vezes, no navegador e no servidor?</summary>
+        <div class="tr-body">
+          <p>A validação no navegador existe para o usuário: avisa na hora que o e-mail está errado, sem precisar recarregar a página. É conveniência.</p>
+          <p>A validação no servidor existe para o sistema: qualquer pessoa com um pouco de conhecimento consegue enviar dados direto, pulando a tela. É a única que realmente protege o banco. Ter as duas escritas na mesma declaração significa que elas nunca vão discordar entre si &mdash; que é o bug clássico dessa dupla.</p>
+        </div>
+      </details>
+
+      <h3>Quando valeria escolher outra coisa</h3>
+      <ul class="plain">
+        <li><strong>TanStack Form</strong> &mdash; se o formulário tivesse campos que se multiplicam e se aninham dinamicamente, com exigência de tipagem muito estrita.</li>
+        <li><strong>Conform</strong> &mdash; se funcionar com o JavaScript desligado fosse um requisito de arquitetura.</li>
+      </ul>
+      <p>Nenhum dos dois casos é o nosso. React Hook Form + Zod é a escolha certa aqui, e o <a href="https://ui.shadcn.com/docs/forms/react-hook-form">shadcn/ui já tem a integração documentada</a>, o que economiza a parte chata da montagem visual.</p>
+
+      <h3>Formulário em etapas</h3>
+      <p>O React Hook Form não traz solução pronta para guardar o que foi preenchido enquanto o candidato navega entre etapas. A receita que a comunidade convergiu é acrescentar o <strong>Zustand</strong> para segurar esse estado, com <strong>uma regra de validação por etapa</strong>, conferida no momento de avançar &mdash; nunca só no final.</p>
+
+      <div class="flag">
+        <p class="tag">Armadilha técnica</p>
+        <h3>O upload do currículo não pode passar pelo servidor</h3>
+        <p>As Server Actions do Next.js aceitam, por padrão, <strong>1 MB</strong> por envio. Currículo em PDF passa disso com facilidade &mdash; e o erro aparece só em produção, quando um candidato real tenta enviar.</p>
+        <p>A solução consagrada é a <strong>URL assinada</strong>. Vale desenhar assim desde o começo: reescrever depois custa mais do que fazer certo agora.</p>
+      </div>
+
+      <details class="tr">
+        <summary>Traduzindo: o que é uma URL assinada?</summary>
+        <div class="tr-body">
+          <p>Em vez de o arquivo subir para o nosso servidor e de lá para o armazenamento, o servidor apenas emite um <em>crachá temporário</em>: um endereço secreto, válido por poucos minutos, que autoriza um único envio.</p>
+          <p>O navegador do candidato usa esse endereço para mandar o PDF direto ao armazenamento. O arquivo nunca passa pelo nosso servidor &mdash; o limite de 1 MB deixa de existir, e o gasto de processamento também.</p>
+          <p>O mesmo mecanismo funciona na volta: quando alguém do RH vai ler um currículo, o sistema gera um endereço temporário para aquele arquivo. Ninguém consegue adivinhar o link de um currículo alheio, e o endereço expira sozinho.</p>
+        </div>
+      </details>
+
+      <h3>Acessibilidade não é enfeite neste projeto</h3>
+      <p>O relatório WebAIM Million de 2026 aponta <strong>campo de formulário sem rótulo</strong> como a terceira falha de acessibilidade mais comum da web, presente em 51% das home pages analisadas.</p>
+      <p>Num formulário de candidatura, essa falha tem um nome específico: é excluir uma pessoa com deficiência do processo seletivo por causa do código. É problema de produto e é exposição jurídica.</p>
+      <p>O mínimo, seguindo a norma WCAG 2.2 nível AA:</p>
+      <ul class="plain">
+        <li><strong>Rótulo de verdade, visível, ligado ao campo.</strong> Texto cinza dentro da caixa não é rótulo: some quando a pessoa começa a digitar e leitores de tela nem sempre o anunciam.</li>
+        <li><strong>Marcar o tipo de cada campo pessoal</strong> com o atributo <code>autocomplete</code>. O navegador passa a preencher sozinho. Para quem tem dislexia ou mobilidade reduzida nas mãos, isso não é comodidade &mdash; é o que torna o formulário utilizável.</li>
+        <li><strong>Erro escrito, dizendo qual campo e como consertar.</strong> Borda vermelha sozinha não comunica nada para quem não enxerga, e &ldquo;campo inválido&rdquo; não ajuda ninguém.</li>
+        <li><strong>Erro ligado ao campo por <code>aria-describedby</code></strong>, que é o mecanismo com melhor suporte nos leitores de tela hoje.</li>
+        <li><strong>Validar quando a pessoa termina o campo</strong>, não a cada tecla. Acusar erro no meio da digitação do e-mail é irritante e não ajuda.</li>
+        <li><strong>Tudo navegável só pelo teclado</strong>, com indicação visível de onde está o foco.</li>
+      </ul>
+      <p>Nada disso é caridade: segundo o Nielsen Norman Group, formulários que seguem boas práticas de usabilidade quase <strong>dobram</strong> a taxa de conclusão na primeira tentativa.</p>
+    </section>
+
+    <!-- ============ 3. RH ============ -->
+    <section class="part" id="rh">
+      <div class="part-head">
+        <p class="part-n">PARTE 03</p>
+        <h2>RH profissional: o que perguntar</h2>
+        <p class="sub">Esta parte é para ler junto com quem cuida do RH. As decisões aqui valem mais para o resultado do que qualquer escolha técnica das partes anteriores.</p>
+      </div>
+
+      <h3>O número que manda em todo o resto</h3>
+      <div class="stats">
+        <div class="stat"><span class="v good">12,47%</span><span class="k">dos candidatos concluem quando o formulário leva menos de 5 minutos</span></div>
+        <div class="stat"><span class="v warn">3,61%</span><span class="k">concluem quando o formulário passa de 15 minutos</span></div>
+        <div class="stat"><span class="v good">+245%</span><span class="k">de aumento na conclusão ao encurtar para menos de 5 minutos</span></div>
+        <div class="stat"><span class="v">90%</span><span class="k">das buscas por vaga acontecem no celular</span></div>
+      </div>
+      <p>A regra prática que circula entre recrutadores é direta: se o formulário não termina em duas roladas de polegar no celular, está longo demais.</p>
+      <p>A consequência para o desenho: <strong>cada campo precisa justificar por que existe</strong>. O teste é sempre o mesmo &mdash; essa resposta muda a decisão de triagem? Se não muda, o campo sai, vira opcional, ou é adiado para uma etapa posterior do processo.</p>
+
+      <h3>A estrutura proposta: três etapas, cerca de 3 minutos</h3>
+
+      <div class="tw">
+        <table>
+          <caption>Etapa 1 &mdash; Identificação, cerca de 60 segundos</caption>
+          <thead><tr><th scope="col">Campo</th><th scope="col">Obrigatório</th><th scope="col">Por quê</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Nome completo</th><td><span class="pill yes">sim</span></td><td>&mdash;</td></tr>
+            <tr><th scope="row">E-mail</th><td><span class="pill yes">sim</span></td><td>canal oficial de todo o processo</td></tr>
+            <tr><th scope="row">Telefone / WhatsApp</th><td><span class="pill yes">sim</span></td><td>contato rápido para agendar</td></tr>
+            <tr><th scope="row">Cidade e estado</th><td><span class="pill yes">sim</span></td><td>define se presencial é viável</td></tr>
+            <tr><th scope="row">LinkedIn ou portfólio</th><td><span class="pill mid">opcional</span></td><td>enriquece, mas não pode barrar quem não tem</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="tw">
+        <table>
+          <caption>Etapa 2 &mdash; Vaga e encaixe, cerca de 90 segundos</caption>
+          <thead><tr><th scope="col">Campo</th><th scope="col">Obrigatório</th><th scope="col">Por quê</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Vaga de interesse</th><td><span class="pill yes">sim</span></td><td>incluir a opção &ldquo;Banco de talentos&rdquo;</td></tr>
+            <tr><th scope="row">Modelo de trabalho aceito</th><td><span class="pill yes">sim</span></td><td>presencial, híbrido ou remoto</td></tr>
+            <tr><th scope="row">Disponibilidade de início</th><td><span class="pill yes">sim</span></td><td>imediata, 15, 30 ou mais de 30 dias</td></tr>
+            <tr><th scope="row">Pretensão salarial</th><td><span class="pill yes">sim</span></td><td><strong>em faixa</strong>, nunca valor exato &mdash; reduz o atrito e evita que o candidato se autoelimine por chutar errado</td></tr>
+            <tr><th scope="row">Perguntas eliminatórias</th><td><span class="pill yes">sim</span></td><td>de 2 a 4, específicas de cada vaga</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <details class="tr">
+        <summary>Traduzindo: o que são perguntas eliminatórias (knockout questions)</summary>
+        <div class="tr-body">
+          <p>São perguntas objetivas, de sim ou não, sobre requisitos inegociáveis da vaga. &ldquo;Tem CNH categoria B?&rdquo;, &ldquo;Tem disponibilidade para viajar?&rdquo;, &ldquo;Tem registro ativo no conselho da profissão?&rdquo;</p>
+          <p>São o maior ganho de informação por segundo gasto do candidato: em cinco segundos separam quem pode seguir de quem não pode, poupando o tempo dos dois lados.</p>
+          <p><strong>O teste para saber se a pergunta merece estar lá:</strong> se a resposta &ldquo;não&rdquo; não elimina ninguém de fato, então não é pergunta eliminatória &mdash; é curiosidade. E curiosidade custa taxa de conclusão. Corte.</p>
+        </div>
+      </details>
+
+      <div class="tw">
+        <table>
+          <caption>Etapa 3 &mdash; Currículo e consentimento, cerca de 60 segundos</caption>
+          <thead><tr><th scope="col">Campo</th><th scope="col">Obrigatório</th><th scope="col">Por quê</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Upload do currículo</th><td><span class="pill yes">sim</span></td><td>PDF ou DOCX, até 5 MB</td></tr>
+            <tr><th scope="row">Carta de apresentação</th><td><span class="pill no">opcional</span></td><td>torná-la obrigatória aumenta o abandono de forma relevante, e em boa parte das vagas ela não muda nada</td></tr>
+            <tr><th scope="row">Como conheceu a vaga</th><td><span class="pill mid">opcional</span></td><td>mede qual canal de divulgação funciona</td></tr>
+            <tr><th scope="row">Consentimento LGPD</th><td><span class="pill yes">sim</span></td><td>caixa não pré-marcada</td></tr>
+            <tr><th scope="row">Banco de talentos</th><td><span class="pill mid">opcional</span></td><td>consentimento <strong>separado</strong> do anterior</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>O que não pedir</h3>
+      <ul class="plain no">
+        <li><strong>Currículo <em>e</em> histórico profissional digitado à mão.</strong> É a redundância que mais faz candidato desistir no meio: ele já anexou tudo aquilo, e agora precisa digitar de novo. Escolha um dos dois.</li>
+        <li><strong>CPF, RG, data de nascimento, estado civil, foto, nome dos pais, endereço completo.</strong> Nenhum desses muda a triagem. Todos aumentam o risco sob a LGPD e alguns são vetor clássico de discriminação. Peça na admissão, para quem foi contratado.</li>
+        <li><strong>Laudo de PcD na inscrição.</strong> É dado de saúde, com proteção legal mais rígida. Se a empresa precisa dele para a Lei de Cotas, peça na etapa de admissão &mdash; não na porta de entrada.</li>
+      </ul>
+      <p>Se a empresa optar por coletar autodeclaração de diversidade, a forma correta é: campo sempre opcional, com a opção &ldquo;prefiro não informar&rdquo;, finalidade explicada ao lado do campo, e resposta <strong>invisível para quem faz a triagem técnica</strong>.</p>
+
+      <h3>Do outro lado: o painel de entrevistas</h3>
+      <p>Este é o achado mais forte da pesquisa, e o que mais muda resultado de contratação.</p>
+      <div class="stats">
+        <div class="stat"><span class="v warn">0,20</span><span class="k">poder de previsão de entrevista sem roteiro nem nota &mdash; quase o mesmo que sortear</span></div>
+        <div class="stat"><span class="v good">0,51</span><span class="k">com roteiro fixo e ficha de avaliação com níveis descritos</span></div>
+        <div class="stat"><span class="v">48%</span><span class="k">dos gestores de RH admitem que viés afeta suas decisões</span></div>
+      </div>
+      <p>Mais que <strong>o dobro</strong> de acerto, sem gastar um centavo &mdash; só mudando o método. E o detalhe que separa a ficha de avaliação boa da inútil não é a pergunta: <strong>é a descrição do que significa cada nota</strong>. É ela que faz dois entrevistadores diferentes darem a mesma nota para a mesma resposta.</p>
+      <p>O que o painel precisa ter, em ordem de valor:</p>
+      <ol class="steps">
+        <li><strong>Ficha de avaliação estruturada.</strong> Competências tiradas da análise real da vaga, não de uma lista genérica de &ldquo;boas perguntas de entrevista&rdquo;. Nota de 1 a 5, com cada nível descrevendo o que se espera ver.</li>
+        <li><strong>As mesmas perguntas, na mesma ordem, para todo candidato.</strong> De 3 a 5 por competência. É o controle de viés mais barato que existe.</li>
+        <li><strong>Anotação de evidência, não de impressão.</strong> &ldquo;Contou que reverteu o deploy em 4 minutos&rdquo; serve; &ldquo;pareceu proativo&rdquo; não serve.</li>
+        <li><strong>Etapas visíveis</strong> &mdash; novo, triagem, entrevista, proposta, contratado ou recusado.</li>
+        <li><strong>Histórico de quem mudou o quê e quando</strong>, sem possibilidade de apagar.</li>
+      </ol>
+
+      <h3>LGPD: quatro obrigações que viram código</h3>
+      <p>Currículo é dado pessoal. No instante em que a empresa recebe um, passa a ser responsável por ele perante a lei. Guardar currículo para sempre &ldquo;por via das dúvidas&rdquo; é exatamente o comportamento que a LGPD mira.</p>
+      <ol class="steps">
+        <li><strong>Consentimento explícito, com prova.</strong> Caixa <em>não</em> pré-marcada &mdash; caixa já marcada não é manifestação de vontade. E é preciso registrar data, hora, versão do texto aceito e IP: sem esse registro, a empresa não consegue <em>provar</em> que houve consentimento.</li>
+        <li><strong>Finalidade declarada e limitada.</strong> Os dados servem para avaliar aquela candidatura. Usar para qualquer outra coisa exige nova autorização.</li>
+        <li><strong>Prazo de descarte declarado e automático.</strong> A prática de mercado é de 6 meses a 1 ano, com renovação do consentimento ao fim. No sistema isso vira uma rotina agendada que apaga o registro <strong>e o arquivo do currículo</strong> &mdash; apagar só a linha do banco e deixar o PDF no armazenamento é o erro mais comum.</li>
+        <li><strong>Banco de talentos é um segundo consentimento.</strong> Guardar o currículo depois do fim do processo é outra finalidade, e precisa de caixa própria, independente da primeira. Sem ela, a resposta certa é apagar.</li>
+      </ol>
+      <p>Do lado da segurança, o mínimo: currículo nunca em pasta pública, painel do RH sempre atrás de login, e <strong>nenhum dado pessoal em log</strong> &mdash; e-mail, telefone e CPF não vão para registro de erro nem para ferramenta de monitoramento.</p>
+    </section>
+
+    <!-- ============ 4. DECISÃO ============ -->
+    <section class="part" id="decisao">
+      <div class="part-head">
+        <p class="part-n">PARTE 04</p>
+        <h2>A decisão que destrava o resto</h2>
+        <p class="sub">Tudo acima converge para uma única escolha pendente.</p>
+      </div>
+
+      <div class="pick">
+        <p class="tag">Recomendação</p>
+        <h3>Next.js + Supabase + Cloudflare, com Turnstile e Resend</h3>
+        <p>Formulário em React Hook Form + Zod, três etapas, upload por URL assinada. Supabase cuidando de banco, arquivos e login do RH. Cloudflare hospedando via OpenNext. Turnstile barrando robôs, Resend confirmando a inscrição por e-mail.</p>
+        <p><strong>Custo mensal: R$ 0</strong>, sem violar os termos de nenhum fornecedor. O único ponto a administrar é a pausa de 7 dias do Supabase.</p>
+      </div>
+
+      <p>A alternativa legítima é ficar na Vercel e assinar o plano Pro por US$ 20/mês. Compra o melhor suporte a Next.js que existe e elimina o trabalho de adaptação &mdash; é uma escolha válida, só não é gratuita.</p>
+    </section>
+
+    <!-- ============ FONTES ============ -->
+    <section class="part" id="fontes">
+      <div class="srcs">
+        <h2 style="font-size:22px;font-weight:700">Fontes</h2>
+        <div class="srcgrid">
+          <a href="https://vercel.com/docs/limits/fair-use-guidelines">Vercel &mdash; Fair Use Guidelines</a>
+          <a href="https://developers.cloudflare.com/pages/functions/pricing/">Cloudflare Pages &mdash; preços</a>
+          <a href="https://www.netlify.com/pricing/">Netlify &mdash; preços</a>
+          <a href="https://opennext.js.org/cloudflare">OpenNext &mdash; adapter Cloudflare</a>
+          <a href="https://supabase.com/docs/guides/storage">Supabase &mdash; Storage</a>
+          <a href="https://ui.shadcn.com/docs/forms/react-hook-form">shadcn/ui &mdash; React Hook Form</a>
+          <a href="https://blog.logrocket.com/building-reusable-multi-step-form-react-hook-form-zod/">LogRocket &mdash; formulário em etapas</a>
+          <a href="https://www.thewcag.com/examples/forms">WCAG 2.2 &mdash; formulários acessíveis</a>
+          <a href="https://www.nngroup.com/">Nielsen Norman Group</a>
+          <a href="https://www.pin.com/blog/applicant-drop-off-rates/">Pin &mdash; taxas de abandono de candidatura</a>
+          <a href="https://www.pin.com/blog/structured-interviews-guide/">Pin &mdash; entrevistas estruturadas</a>
+          <a href="https://noteforms.com/resources/hiring-application-template-2026-guide">NoteForms &mdash; guia de formulário de contratação</a>
+          <a href="https://portal.fgv.br/sites/default/files/uploads/recursos_humanos.pdf">FGV &mdash; Guia de Proteção de Dados: RH</a>
+          <a href="https://blog.solides.com.br/lgpd-no-recrutamento-e-selecao/">Sólides &mdash; LGPD em recrutamento</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<footer>
+  <div class="footer-in">
+    <span>work-with-us &middot; pesquisa de base</span>
+    <span>Levantada em 23 de agosto de 2026</span>
+    <span>Revalidar os planos gratuitos antes de fechar &mdash; eles mudam</span>
+  </div>
+</footer>
+
+</body>
+</html>
