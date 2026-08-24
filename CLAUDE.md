@@ -1,135 +1,43 @@
-# CLAUDE.md — Contexto Geral do Projeto
+# work-with-us
 
-> Este arquivo é a **fonte de verdade** do projeto. Leia por completo antes de qualquer tarefa.
-> Ele é curto de propósito: mantenha-o assim.
+Formulário "Trabalhe Conosco" + painel interno de triagem de candidatos.
 
----
+**Restrição:** hospedagem e banco **gratuitos**. Solução que exige plano pago está fora.
 
-## 1. O que é
-
-**work-with-us** — Formulário de inscrição ("Trabalhe Conosco") personalizado da empresa,
-com painel interno para triagem de candidatos e apoio ao processo de entrevistas.
-
-**Dois públicos, dois lados:**
-
-| Lado | Quem usa | O que faz |
-|---|---|---|
-| Público | Candidato | Vê vagas, preenche formulário, anexa currículo, recebe confirmação |
-| Interno | RH / gestor | Lista candidaturas, filtra, pontua, registra notas de entrevista, muda status |
-
-**Restrição-mãe:** hospedagem e banco de dados **gratuitos** (tier free) por hora.
-Toda decisão técnica passa por esse filtro. Se uma solução exige cartão de crédito
-ou plano pago para funcionar, ela está fora — proponha alternativa antes de implementar.
+**Stack:** a definir — ver [docs/pesquisa-stack.md](docs/pesquisa-stack.md).
 
 ---
 
-## 2. Stack
+## Regras
 
-> Definida em ADR-0001 (ver `docs/adr/`). Não trocar sem registrar um novo ADR.
+**1. Commit a cada feature.** Uma feature = um commit. Nunca encerrar tarefa com
+trabalho não commitado. Nunca commitar código que não roda.
 
-- **Status:** _a definir_ — ver pesquisa em `docs/pesquisa-stack.md`.
+Formato: `tipo(escopo): resumo no imperativo`
+Tipos: `feat` `fix` `refactor` `docs` `chore` `test`
 
-Quando a stack for fechada, esta seção vira a lista definitiva (framework, DB, ORM,
-hospedagem, storage de arquivos, e-mail transacional, auth).
+**2. Registrar a feature abaixo, no mesmo commit.** Uma linha, o que o usuário ganha,
+sem detalhe técnico. ID sequencial, nunca reaproveitado. Feature removida vira
+status `removida` em vez de sumir.
 
----
-
-## 3. Regras de trabalho (obrigatórias)
-
-### 3.1. Commit a cada feature — **OBRIGATÓRIO**
-
-Toda feature termina em commit. Sem exceção.
-
-- **Uma feature = um commit.** Não acumule duas features num commit só, nem
-  espalhe uma feature por vários commits "pela metade".
-- **Nunca deixe trabalho concluído sem commitar** ao encerrar uma tarefa.
-- **Nunca commite código que não roda.** Se quebrou, conserte antes ou não commite.
-- **Nunca commite direto sem antes atualizar a seção 4** (Registro de Features).
-  O commit da feature inclui a linha nova do registro.
-- Branch: trabalhar em `main` é aceitável neste projeto (solo). Se a mudança for
-  grande ou arriscada, criar branch `feat/<slug>` e só então integrar.
-- Nunca use `--no-verify`, `--amend` em commit já publicado, nem `push --force`.
-
-**Formato da mensagem** (Conventional Commits, em português):
-
-```
-<tipo>(<escopo>): <resumo no imperativo, minúsculo, sem ponto final>
-
-<corpo opcional: o porquê, não o quê>
-```
-
-Tipos: `feat` · `fix` · `refactor` · `docs` · `style` · `test` · `chore` · `perf`
-
-Exemplos:
-```
-feat(formulario): adicionar upload de currículo em PDF
-fix(rh): corrigir filtro de status que ignorava candidaturas arquivadas
-docs(contexto): registrar feature F007 no CLAUDE.md
-```
-
-### 3.2. Registro de features — **OBRIGATÓRIO**
-
-Ao concluir uma feature, adicione **uma linha** na tabela da seção 4, no mesmo commit.
-
-Regras da linha:
-- **Extremamente resumida.** Uma linha, no máximo ~90 caracteres na coluna "O que faz".
-- Descreve **o resultado para o usuário**, não a implementação.
-- Sem detalhe técnico, sem nome de arquivo, sem nome de função.
-- ID sequencial `F001`, `F002`, … nunca reaproveitado, nunca reordenado.
-- Data no formato `AAAA-MM-DD`.
-- Se uma feature for removida, **não apague a linha** — marque status `removida`.
-
-O objetivo é que, meses depois, alguém leia só a seção 4 e saiba tudo que o sistema faz.
-Detalhe aprofundado, quando necessário, vai em `docs/` — nunca aqui.
-
-### 3.3. Outras regras
-
-- **Segredos nunca no repositório.** Chaves e URLs de banco só em `.env.local`
-  (ignorado pelo git). `.env.example` guarda apenas os nomes das variáveis.
-- **Dados de candidato são dados pessoais (LGPD).** Não logar CPF, e-mail, telefone
-  ou conteúdo de currículo. Não expor candidaturas em rota pública.
-  Ver `docs/lgpd.md` antes de mexer em coleta ou retenção de dados.
-- **Decisão técnica relevante** (troca de banco, de hospedagem, de ORM) vira um ADR
-  curto em `docs/adr/NNNN-titulo.md` antes de virar código.
-- Responder e escrever documentação em **português do Brasil**.
+**3. Dados de candidato são pessoais (LGPD).** Não logar e-mail, telefone, CPF ou
+currículo. Nada de candidatura em rota pública. Segredos só em `.env.local`.
 
 ---
 
-## 4. Registro de Features
-
-> Uma linha por feature. Atualizado no mesmo commit da feature. Ver regras em 3.2.
+## Features
 
 | ID | Data | Área | O que faz | Status |
 |---|---|---|---|---|
-| F000 | 2026-08-23 | infra | Repositório, contexto e convenções do projeto | ativa |
+| F000 | 2026-08-23 | infra | Repositório, contexto e convenções | ativa |
 
-**Áreas válidas:** `infra` · `formulario` · `vagas` · `rh` · `auth` · `dados` · `notificacao`
-
----
-
-## 5. Estrutura
-
-```
-work-with-us/
-├── CLAUDE.md          # este arquivo — contexto geral + registro de features
-├── README.md          # como rodar o projeto
-├── .env.example       # nomes das variáveis de ambiente (sem valores)
-└── docs/
-    ├── adr/           # decisões técnicas (uma por arquivo)
-    ├── pesquisa-stack.md
-    ├── formulario.md  # campos do formulário e o porquê de cada um
-    └── lgpd.md        # coleta, retenção e descarte de dados de candidatos
-```
+Áreas: `infra` `formulario` `vagas` `rh` `auth` `dados` `notificacao`
 
 ---
 
-## 6. Comandos
+## Docs
 
-_A preencher quando a stack for definida._ Formato esperado:
-
-| Comando | O que faz |
-|---|---|
-| `npm run dev` | sobe o ambiente local |
-| `npm run build` | build de produção |
-| `npm run lint` | lint |
-| `npm test` | testes |
+- [pesquisa-stack.md](docs/pesquisa-stack.md) — hospedagem e banco gratuitos
+- [formulario.md](docs/formulario.md) — campos do formulário e o porquê
+- [lgpd.md](docs/lgpd.md) — consentimento, retenção, descarte
+- `docs/adr/` — decisões técnicas relevantes, uma por arquivo
